@@ -82,3 +82,50 @@ plt.title("Canal Y")
 plt.axis("off")
 plt.suptitle("Modelo CMY (simulado)")
 plt.show()
+
+# Conversión a escala de grises
+imagen_gris = cv2.cvtColor(imagen_cv, cv2.COLOR_BGR2GRAY)
+plt.figure(figsize=(5, 5))
+plt.title("Imagen en Escala de Grises")
+plt.imshow(imagen_gris, cmap="gray")
+plt.axis("off")
+plt.show()
+
+# Binarización con umbral fijo
+_, binaria_fija = cv2.threshold(imagen_gris, 127, 255, cv2.THRESH_BINARY)
+plt.figure(figsize=(5, 5))
+plt.title("Binarización con Umbral Fijo (127)")
+plt.imshow(binaria_fija, cmap="gray")
+plt.axis("off")
+plt.show()
+
+# Binarización adaptativa
+binaria_adaptativa = cv2.adaptiveThreshold(
+    imagen_gris, 255,
+    cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+    cv2.THRESH_BINARY,
+    11, 2
+)
+plt.figure(figsize=(5, 5))
+plt.title("Binarización Adaptativa")
+plt.imshow(binaria_adaptativa, cmap="gray")
+plt.axis("off")
+plt.show()
+
+# Histogramas
+plt.figure(figsize=(12, 4))
+
+# Histograma de la imagen en gris
+plt.subplot(1, 2, 1)
+plt.hist(imagen_gris.ravel(), bins=256, range=[0, 256], color="black")
+plt.title("Histograma en Escala de Grises")
+
+# Histogramas de canales RGB
+color = ('r','g','b')
+plt.subplot(1, 2, 2)
+for i, col in enumerate(color):
+    hist = cv2.calcHist([imagen_cv_rgb],[i],None,[256],[0,256])
+    plt.plot(hist, color=col)
+plt.title("Histograma RGB")
+
+plt.show()
