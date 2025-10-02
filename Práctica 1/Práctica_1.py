@@ -92,7 +92,7 @@ plt.axis("off")
 plt.show()
 
 # Binarización con umbral fijo
-_, binaria_fija = cv2.threshold(imagen_gris, 127, 255, cv2.THRESH_BINARY)
+_, binaria_fija = cv2.threshold(imagen_gris, 127, 255, cv2.THRESH_BINARY) #Si el valor del pixel es menor dea 127, la imagen se vuelve negra, si es mayor se vuelve blanca
 plt.figure(figsize=(5, 5))
 plt.title("Binarización con Umbral Fijo (127)")
 plt.imshow(binaria_fija, cmap="gray")
@@ -102,7 +102,7 @@ plt.show()
 # Binarización adaptativa
 binaria_adaptativa = cv2.adaptiveThreshold(
     imagen_gris, 255,
-    cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+    cv2.ADAPTIVE_THRESH_GAUSSIAN_C, 
     cv2.THRESH_BINARY,
     11, 2
 )
