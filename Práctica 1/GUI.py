@@ -176,7 +176,7 @@ def histograma_color():
     plt.show()
 
     #Para cada color por separado
-    for i, canal in enumerate(["Azul", "Verde", "Rojo"]):  # en el orden que pediste
+    for i, canal in enumerate(["Azul", "Verde", "Rojo"]):
         datos = imagen_rgb[:, :, {"Azul":2, "Verde":1, "Rojo":0}[canal]].flatten()
         histograma, _ = np.histogram(datos, bins=256, range=(0, 256))
 
